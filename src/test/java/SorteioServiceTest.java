@@ -11,7 +11,6 @@ public class SorteioServiceTest {
     @Test
     void deveRetornarSorteio(){
         SorteioService sorteioService = new SorteioServiceImpl();
-        sorteioService.setNumSorteados();
         assertEquals(QTD_NUM_SORTEADOS, sorteioService.getNumSorteados().size());
     }
 }

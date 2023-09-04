@@ -13,6 +13,10 @@ public class SorteioServiceImpl implements SorteioService{
 
     private List<Integer> numSorteados;
 
+    public SorteioServiceImpl() {
+        setNumSorteados();
+    }
+
     @Override
     public List<Integer> sorteio() {
         List<Integer> numSorteados = new ArrayList<>();
