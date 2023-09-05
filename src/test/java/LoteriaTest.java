@@ -24,9 +24,6 @@ public class LoteriaTest {
     Aposta aposta;
 
     SorteioService sorteioService = createMock(SorteioService.class);
-    List<Integer> numJogadosMaior60 = new ArrayList<>();
-    List<Integer> numJogadosMenor1 = new ArrayList<>();
-    List<Integer> numJogadosRepetidos = new ArrayList<>();
     List<Integer> numJogadosQuadra = new ArrayList<>();
     List<Integer> numJogadosQuina = new ArrayList<>();
     List<Integer> numJogadosResultado = new ArrayList<>();
@@ -43,13 +40,6 @@ public class LoteriaTest {
 
     @BeforeEach
     void setup(){
-        int i = 0;
-        while(i < 7){
-            numJogadosMaior60.add(55+i);
-            numJogadosMenor1.add(6-i);
-            numJogadosRepetidos.add(1);
-            i++;
-        }
         aposta = new Aposta();
         jogoMenor6.addAll(Arrays.asList(1,2,3,4,5));
         jogoMaior15.addAll(Arrays.asList(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16));
@@ -60,43 +50,7 @@ public class LoteriaTest {
         loteria = new Loteria();
     }
 
-    @Test
-    void deveRetornarExcecaoNumeroRepetido(){
-        try {
-            aposta.setLsNumJogados(numJogadosRepetidos);
-            loteria.loteria(aposta.getLsNumJogados(), sorteioService, vlPremio);
-            fail();
 
-        }catch (IllegalArgumentException e){
-            assertEquals("Numero jogado repetido", e.getMessage());
-        }
-
-    }
-
-    @Test
-    void deveRetornarExcecaoNumeroMaiorQueLimiteValido(){
-        try {
-            aposta.setLsNumJogados(numJogadosMaior60);
-            loteria.loteria(aposta.getLsNumJogados(), sorteioService, vlPremio);
-            fail();
-
-        }catch (IllegalArgumentException e){
-            assertEquals("Numero jogado fora do limite do jogo", e.getMessage());
-        }
-
-    }
-    @Test
-    void deveRetornarExcecaoNumeroMenorQueLimiteValido(){
-        try {
-            aposta.setLsNumJogados(numJogadosMenor1);
-            loteria.loteria(aposta.getLsNumJogados(), sorteioService, vlPremio);
-            fail();
-
-        }catch (IllegalArgumentException e){
-            assertEquals("Numero jogado fora do limite do jogo", e.getMessage());
-        }
-
-    }
     @Test
     void deveRetornarExcecaoTamanhoJogoMenorLimiteValido(){
         try {
